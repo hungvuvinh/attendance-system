@@ -1,32 +1,48 @@
 # Attendance System
 
-## Sprint 0
+## Current status
 
-This repository contains the initial backend and frontend foundation for the attendance system.
+The repository contains the Sprint 0 foundation and the completed Sprint 1 Task 1-2 implementation.
 
-Current scope:
+Implemented:
 
-- .NET Clean Architecture solution and domain foundation
+- .NET Clean Architecture solution and domain entities
 - Next.js frontend shell with API health diagnostics
-- PostgreSQL database creation only; no application tables or migrations yet
+- EF Core PostgreSQL persistence contracts, DbContext and entity configurations
+- PostgreSQL 16 Docker Compose service
+
+Sprint 1 Task 3-7 are still pending: device connectors, application services, REST APIs and seed data, management pages, and migration/full verification.
 
 ## Local setup
 
 Prerequisites:
 
-- .NET 8 SDK or compatible newer SDK with the .NET 8 runtime installed
+- .NET 10 SDK and runtime
 - Node.js 20+ and npm
-- PostgreSQL 16, with `createdb` and `psql` available on `PATH`
+- Docker with Docker Compose, or PostgreSQL 16 with `createdb` and `psql` available on `PATH`
 
 Copy `.env.example` to a local environment file and replace placeholders locally. Do not commit passwords, tokens or other credentials.
 
-Create the empty database as a PostgreSQL administrator:
+### PostgreSQL with Docker Compose
+
+Set the local password in the current PowerShell session, then start PostgreSQL:
+
+```powershell
+$env:POSTGRES_PASSWORD = "replace-locally"
+docker compose up -d postgres
+```
+
+The Compose service uses PostgreSQL 16, creates `attendance_db`, and exposes it on port `5432` by default. Do not commit the password or any other credentials.
+
+### Local PostgreSQL installation
+
+Create the database as a PostgreSQL administrator if PostgreSQL is already installed locally:
 
 ```powershell
 createdb -h localhost -p 5432 -U postgres attendance_db
 ```
 
-This Sprint intentionally creates no application tables and no EF Core migration.
+The EF Core model and configurations are available, but the initial migration and application startup registration are scheduled for later Sprint 1 tasks.
 
 Build and test the backend:
 
@@ -47,4 +63,4 @@ The API health endpoint is `GET /api/health`; the frontend diagnostic page is `/
 
 ## Deferred work
 
-Database schema, EF Core persistence, mock devices, Docker files, device synchronization and attendance processing are planned for later tasks.
+Initial EF Core migration, API startup registration and seed data, mock devices, device synchronization, attendance processing, and management UI are planned for later tasks.
