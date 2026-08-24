@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Attendance.Domain\Attendance.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Attendance.Application\Attendance.Application.csproj" />
+    <ProjectReference Include="..\..\src\Attendance.Infrastructure\Attendance.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
