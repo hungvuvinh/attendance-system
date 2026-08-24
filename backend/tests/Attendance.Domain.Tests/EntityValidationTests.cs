@@ -31,7 +31,13 @@ public class EntityValidationTests
     [Fact]
     public void Base_entity_has_identity_and_audit_timestamps()
     {
-        var entity = new Employee("NV001", "Nguyen Van A", Guid.NewGuid());
+        var entity = new Employee(
+            "NV001",
+            "Nguyen Van A",
+            Guid.NewGuid(),
+            "Engineer",
+            new DateOnly(2026, 8, 20),
+            "M001");
 
         Assert.NotEqual(Guid.Empty, entity.Id);
         Assert.NotEqual(default, entity.CreatedAt);
