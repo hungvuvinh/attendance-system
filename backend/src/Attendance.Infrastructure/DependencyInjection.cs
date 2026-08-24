@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Attendance.Infrastructure.Persistence;
+using Attendance.Infrastructure.Connectors;
 
 namespace Attendance.Infrastructure;
 
@@ -26,6 +27,9 @@ public static class DependencyInjection
 
         services.AddScoped<IAppDbContext>(serviceProvider =>
             serviceProvider.GetRequiredService<AppDbContext>());
+
+        services.AddSingleton<IDeviceConnector, MockDeviceConnector>();
+        services.AddSingleton<IDeviceConnectorFactory, DeviceConnectorFactory>();
 
         return services;
     }
